@@ -1,40 +1,58 @@
-
 #include <stdio.h>
+
+float calculate_average(int marks[], int n)
+{
+    int sum = 0;
+    for (int i = 0; i < n; i++)
+        sum += marks[i];
+    return sum / (float)n;
+}
+
+
+void print_grade(char name[], float average)
+{
+    if (average >= 80)
+        printf("%s Grade A avg = %.2f\n", name, average);
+    else if (average >= 60)
+        printf("%s Grade B avg = %.2f\n", name, average);
+    else if (average >= 40)
+        printf("%s Grade C avg = %.2f\n", name, average);
+    else
+        printf("%s Fail avg = %.2f\n", name, average);
+}
+
 int main()
 {
-    int student_marks[3][3] = {{50, 60, 70}, {80, 90, 100}, {30, 40, 50}};
-    char students_name[3][1] = {"Ali", "Bob", "Cat"};
-    int i, j, sum_marks;
-    float average;
+    int student_marks[3][3] = {
+        {50, 60, 70},
+        {80, 90, 100},
+        {30, 40, 50}
+    };
+    char students_name[3][10] = {"Ali", "Bob", "Cat"};
+
+    float averages[3];
+    int i, j;
+    int total, maximum = 0, position = 0;
+
     for (i = 0; i < 3; i++)
     {
-        sum_marks = 0;
-        for (j = 0; j < 3; j++)
-        {
-            sum_marks += student_marks[i][j];
-        }
-        average = sum_marks / 3.0;
-        if (average >= 80)
-            printf("%s Grade A avg=%.2f\n", students_name[i], average);
-        else if (average >= 60)
-           printf("%s Grade B avg=%.2f\n",students_name[i],average);
-        else if(average>=40)
-           printf("%s Grade C avg=%.2f\n",students_name[i],average);
-        else 
-           printf("%s Fail avg=%.2f\n",students_name[i],average);
-        }
-        int maximam=0,position=0;for(i=0;i<3;i++){
-                sum_marks = 0;
-                for (j = 0; j < 3; j++)
-                {
-                    sum_marks += student_marks[i][j];
-                }
-                if (sum_marks > maximam)
-                {
-                    maximam = sum_marks;
-                    position = i;
-                }
-        }
-        printf("Topper: %s with total %d\n",students_name[position],maximam);
-        return 0;
+        averages[i] = calculate_average(student_marks[i], 3);
+        print_grade(students_name[i], averages[i]);
     }
+
+    for (i = 0; i < 3; i++)
+    {
+        total = 0;
+        for (j = 0; j < 3; j++)
+            total += student_marks[i][j];
+
+        if (total > maximum)
+        {
+            maximum = total;
+            position = i;
+        }
+    }
+
+    printf("\nTopper: %s with total %d\n", students_name[position], maximum);
+    return 0;
+}
