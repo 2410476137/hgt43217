@@ -9,5 +9,6 @@ int main(){
         cout<<"0"<<endl;
         else 
         cout<<n/4+1<<endl;
+        cout<<"change"<<endl;
     }
 }
