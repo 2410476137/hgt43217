@@ -10,5 +10,6 @@ int main(){
         cout<<ar[0]<<" "<<ar[1]<<" "<<ar[2]<<endl;
         else 
          cout<<ar[0]<<" "<<ar[1]<<" "<<ar[3]<<endl;
+         cout<<"hone"<<endl;
     }
 }
